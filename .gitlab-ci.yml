@@ -1,7 +1,6 @@
 stages:
    - build
    - test
-   - push
    - deploy
 
 build_job:
@@ -17,15 +16,6 @@ test_job:
     - echo "TESTING"
   tags:
     - dev
-
-push_job:
- stage: push
- script:
-   - docker login -u $DOKCERHUB_USER -p $DOCKERHUB_PASS
-   - docker tag node-app:latest $DOKCERHUB_USER/node-app:latest
-   - docker push
- tags:
-   - dev
 
 deploy_job:
  stage: deploy
